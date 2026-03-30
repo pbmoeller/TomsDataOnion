@@ -39,6 +39,12 @@ uint8_t rotateRight8(uint8_t value, uint8_t n)
     return (value >> n) | (value << (-n & 7));
 }
 
+uint8_t bitCount8(uint8_t value)
+{
+    return static_cast<uint8_t>(__builtin_popcount(value));
+}
+
+
 #endif // _MSC_VER
 
 uint8_t flipEverySecondBit8(uint8_t val)

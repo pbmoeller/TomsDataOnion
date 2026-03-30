@@ -5,10 +5,10 @@
 #include <iomanip>
 #include <map>
 
+#include "aes.hpp"
 #include "ascii85.h"
 #include "bitwise.h"
 #include "network.h"
-
 
 static std::map<int, std::string> layerMap = {
     {0, "data/layer0_payload.txt"},
@@ -48,7 +48,7 @@ std::vector<uint8_t> getEncodedLayer(int layer)
 
 int main(int argc, char **argv)
 {
-    const int layer = 4;
+    const int layer = 5;
 
     // Get encoded payload from file
     auto encoded_payload = getEncodedLayer(layer);
@@ -70,7 +70,8 @@ int main(int argc, char **argv)
         // decode layer 4
         encoded_data = network_decode(encoded_payload);
     } else if(layer == 5) {
-        encoded_data = std::vector<uint8_t>();
+        // decode layer 5
+        encoded_data = aes_decode(encoded_payload);
     }
 
     // Print Layer

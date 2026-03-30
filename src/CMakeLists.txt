@@ -1,9 +1,15 @@
 add_executable(TomsDataOnion 
     "main.cpp"
 
+    "aes.cpp"
     "ascii85.cpp"
     "bitwise.cpp"
     "network.cpp"
+)
+
+target_link_libraries(TomsDataOnion
+    PRIVATE
+        OpenSSL::Crypto
 )
 
 add_custom_command(

@@ -8,6 +8,7 @@ project(TomsDataOnion
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+find_package(OpenSSL)
 
 add_subdirectory("src")
 add_subdirectory("test")

@@ -9,6 +9,7 @@
 #include "ascii85.h"
 #include "bitwise.h"
 #include "network.h"
+#include "virtual_machine.hpp"
 
 static std::map<int, std::string> layerMap = {
     {0, "data/layer0_payload.txt"},
@@ -17,6 +18,7 @@ static std::map<int, std::string> layerMap = {
     {3, "data/layer3_payload.txt"},
     {4, "data/layer4_payload.txt"},
     {5, "data/layer5_payload.txt"},
+    {6, "data/layer6_payload.txt"},
 };
 
 std::string readPayloadFromFile(std::string fileName)
@@ -48,7 +50,7 @@ std::vector<uint8_t> getEncodedLayer(int layer)
 
 int main(int argc, char **argv)
 {
-    const int layer = 5;
+    const int layer = 6;
 
     // Get encoded payload from file
     auto encoded_payload = getEncodedLayer(layer);
@@ -72,6 +74,9 @@ int main(int argc, char **argv)
     } else if(layer == 5) {
         // decode layer 5
         encoded_data = aes_decode(encoded_payload);
+    } else if(layer == 6) {
+        // decode layer 6
+        encoded_data = instruction_decode(encoded_payload);
     }
 
     // Print Layer

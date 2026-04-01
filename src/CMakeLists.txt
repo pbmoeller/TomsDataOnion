@@ -5,6 +5,7 @@ add_executable(TomsDataOnion
     "ascii85.cpp"
     "bitwise.cpp"
     "network.cpp"
+    "virtual_machine.cpp"
 )
 
 target_link_libraries(TomsDataOnion
